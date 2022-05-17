@@ -1,15 +1,25 @@
 <template>
-  <main>
-    
+  <main class="d-flex flex-wrap justify-content-center">
+      <cardCont/>
   </main>
 </template>
 
 <script>
-export default {
 
+import cardCont from './cardCont.vue'
+export default {
+  name:'mbMain',
+  components: {
+    cardCont
+  },
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '../assets/style/vars';
+main{
+  background-color: $bg;
+  height: 100vh;
+}
 
 </style>
