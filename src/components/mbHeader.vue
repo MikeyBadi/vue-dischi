@@ -1,17 +1,40 @@
 <template>
   <header class="d-flex justify-content-between">
     <img src="../assets/img/logo-small.svg" alt="">
-    <select name="genere" id="" placeholder="Seleziona un genere">
-      <option value="all">Seleziona un genere</option>
-      <option value="rock">Rock</option>
-      <option value="metal">Metal</option>
-    </select>
+    <mbSelect
+    @selectGenre="getCardForGenre"
+    />
   </header>
 </template>
 
 <script>
+
+import mbSelect from "./mbSelect.vue";
+
+
 export default {
-name: 'mbHeader'
+    name: "mbHeader",
+    components: {
+      mbSelect
+      },
+
+    data(){
+      return{
+        
+      }
+    },
+   
+    methods: {
+        getCardForGenre(cardGenre){
+          console.log('evento scatenato 1');
+          this.$emit('getGenreEvent', cardGenre);
+        },
+
+        getCardForArtist(artistSting){
+          console.log('evento artista 1');
+          this.$emit('getArtistEvent', artistSting);
+        }
+    },
 }
 </script>
 
