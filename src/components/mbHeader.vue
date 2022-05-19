@@ -1,34 +1,35 @@
 <template>
   <header class="d-flex justify-content-between">
     <img src="../assets/img/logo-small.svg" alt="">
-    <mbSelect
-    @selectGenre="getCardForGenre"
-    />
+    <div>
+      <select v-model="genreToSearch" @change="$emit('startSearch', genreToSearch)">
+        <option selected  value="">Seleziona un genere</option>
+        <option 
+        v-for="(genre, index) in genres"
+        :key="`genre${index}`"
+        :value="genre">{{genre}}</option>
+
+      </select>
+    </div>
+
   </header>
 </template>
 
 <script>
 
-import mbSelect from "./mbSelect.vue";
 
 
 export default {
     name: "mbHeader",
-    components: {
-      mbSelect
-      },
-
+  props:{
+    genres: Array
+  },
     data(){
       return{
-        
+        genreToSearch:''
       }
     },
-   
-    methods: {
-        getCardForGenre(cardGenre){
-          this.$emit('getGenreEvent', cardGenre);
-        }
-    },
+
 }
 </script>
 

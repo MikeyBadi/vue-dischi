@@ -2,7 +2,7 @@
   <div class="stampCard d-flex flex-wrap justify-content-center"
   v-if="loading">
       <mbCard
-      v-for="(song, index) in songsArr" :key="`song-${index}`"
+      v-for="(song, index) in discFiltered" :key="`song-${index}`"
       :songCard="song"
       />
   </div>
@@ -20,6 +20,9 @@ export default {
   components: {
     mbCard,
     loaderComp
+  },
+  props:{
+    genreToSearch: String
   },
   // v dare tutti i dati per la ricezione della API
   data() {
@@ -40,24 +43,24 @@ export default {
       .then(r=>{
         this.songsArr = r.data.response;
         // console.log(r.data.response);
+        const genres = []
+        this.songsArr.forEach(song => {
+          if(!genres.includes(song.genre)) genres.push(song.genre);
+        });
+        this.$emit('getGeneresList', genres)
         this.loading = true
       })
     }
   },
   computed:{
-
-    CardsListForGenre(){
-      let listForGenre = [];
-      if(this.selectedGenre === '' || this.selectedGenre === 'Seleziona un genere'){
-        listForGenre = this.cardsList;
-      }else{
-        listForGenre = this.cardsList.filter(card =>{
-          return card.genre === this.selectedGenre;
-        })
+    discFiltered(){
+      if(this.genreToSearch === ''){
+        return this.songsArr
       }
-      return listForGenre;
+      return this.songsArr.filter(song => song.genre === this.genreToSearch)
     }
-    },
+  }
+
 }
 </script>
 

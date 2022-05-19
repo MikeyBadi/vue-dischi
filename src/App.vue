@@ -1,8 +1,12 @@
 <template>
   <div class="spoty">
-    <mbHeader @getGenreEvent ="filteredByGenre"/>
+    <mbHeader 
+    @startSearch="startSearch"
+    :genres="genres"/>
     <div class="d-flex justify-content-center">
-      <mbMain/> 
+      <mbMain 
+      :genreToSearch="genreToSearch"
+      @getGeneresList="getGeneresList"/> 
     </div>
     
   </div>
@@ -23,16 +27,19 @@ export default {
 
   data() {
     return {
-      cardType: '',
-      cardArtist: '',
+      genreToSearch:'',
+      genres: []
     }
   },
 
   methods: {
-    filteredByGenre(cardGenre){
-      this.cardType = cardGenre;
+    startSearch(genreToSearch){
+      this.genreToSearch = genreToSearch;
+      console.log(genreToSearch);
     },
-
+    getGeneresList(genres){
+      this.genres = genres;
+    }
 
   }
 }
