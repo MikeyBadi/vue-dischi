@@ -26,13 +26,7 @@ export default {
    
     methods: {
         getCardForGenre(cardGenre){
-          console.log('evento scatenato 1');
           this.$emit('getGenreEvent', cardGenre);
-        },
-
-        getCardForArtist(artistSting){
-          console.log('evento artista 1');
-          this.$emit('getArtistEvent', artistSting);
         }
     },
 }

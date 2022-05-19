@@ -30,14 +30,8 @@ export default {
 
   methods: {
     filteredByGenre(cardGenre){
-      console.log('ascotatore 2');
       this.cardType = cardGenre;
     },
-
-    filteredByArtist(artistString){
-      console.log('ascoltatore 2 artist');
-      this.cardArtist = artistString;
-    }
 
 
   }
